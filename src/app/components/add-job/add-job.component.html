@@ -1,0 +1,60 @@
+<div class="card">
+    <div class="card card-content">
+      <span class="card-title">Add Job</span>
+      <form (ngSubmit)="onSubmit()" class="col s6">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Job Number" [(ngModel)]="job.job_id" name="job_id">
+            <label>Job No</label>
+          </div>
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Customer Name" [(ngModel)]="job.customer_name" name="customer_name">
+            <label>Customer Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Flexitank Number" [(ngModel)]="flexitank.flexitank_number" name="flexitank_number">
+            <label>Flexitank No</label>
+          </div>
+          <!-- <div class="input-field col s6">
+            <input type="text" placeholder="Add " [(ngModel)]="job.customer_name" name="cusomer_name">
+            <label>Customer Name</label>
+          </div> -->
+          
+        </div>
+        <input type="submit" value="Submit" class="btn">
+      </form>
+    </div>
+  </div>
+  <div *ngIf="jobs?.length > 0; else noJobs">
+<h5 class="center">Jobs</h5>
+    <ul *ngFor="let job of jobs" class="collection">
+      <li  class="collection-item"><strong>Job Number: {{job.job_id}}:</strong> <br>
+        Cutomer Name: {{job.customer_name}} 
+        <!-- <a href="#" class="secondary-content">
+            <i (click)="editJob($event, job)" class="fa fa-pencil"></i> 
+            <i *ngIf="editState && jobToEdit.id == job.id" (click)="clearState()" class="fa fa-compress"></i> 
+          </a> -->
+  
+          <!-- <div *ngIf="editState && jobToEdit.id == job.id">
+            <form (ngSubmit)="updateJob(job)">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input type="text" placeholder="Add Title" [(ngModel)]="job.title" name="title">
+                    </div>
+                    <div class="input-field col s6">
+                      <input type="text" placeholder="Add Description" [(ngModel)]="job.description" name="description">
+  
+                    </div>
+                    <input type="submit" value="Update" class="btn orange">
+                    <button (click)="deleteJob($event, job)" style="margin: 30px" class="btn red">Delete</button>
+                  </div>
+            </form>
+          </div> -->
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noJobs>
+    <hr>
+    <h5>There are no jobs to list</h5>
+  </ng-template>
