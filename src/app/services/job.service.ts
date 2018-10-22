@@ -12,10 +12,12 @@ import 'rxjs/add/operator/catch';
 export class JobService {
   jobsCollection: AngularFirestoreCollection<Job>;
   jobs: Observable<Job[]>;
+
   JobDoc: AngularFirestoreDocument<Job>;
 
   flexitanksCollection: AngularFirestoreCollection<Flexitank>;
   flexitanks: Observable<Flexitank[]>;
+  flexitanks1: Observable<Flexitank[]>;
   FlexitankDoc: AngularFirestoreDocument<Flexitank>;
 
 
@@ -32,8 +34,7 @@ export class JobService {
       });
     });
 
-
-
+    this.flexitanks1 = this.afs.collection('flexitanks').valueChanges();
     this.flexitanksCollection = this.afs.collection('flexitanks', ref => ref.orderBy('number','asc'));
     this.flexitanks = this.flexitanksCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
